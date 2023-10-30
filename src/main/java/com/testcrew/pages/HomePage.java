@@ -1,4 +1,4 @@
-package pages;
+package com.testcrew.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -9,18 +9,18 @@ import java.time.Duration;
 
 public class HomePage {
     //Elements
-    By litePackageText = By.id("name-lite");
-    By litePackagePriceText = By.cssSelector("#currency-lite b");
-    By litePackageCurrencyText = By.cssSelector("#currency-lite i");
-    By classicPackageText = By.id("name-classic");
-    By classicPackagePriceText = By.cssSelector("#currency-classic b");
-    By classicPackageCurrencyText = By.cssSelector("#currency-classic i");
-    By premiumPackageText = By.id("name-premium");
-    By premiumPackagePriceText = By.cssSelector("#currency-premium b");
-    By premiumPackageCurrencyText = By.cssSelector("#currency-premium i");
-    By countryBtn = By.cssSelector(".head-links .country-current");
-    By kuwaitCountryFlag = By.id("kw-contry-flag");
-    By bahrainCountryFlag = By.id("bh-contry-flag");
+    private By litePackageText = By.id("name-lite");
+    private By litePackagePriceText = By.cssSelector("#currency-lite b");
+    private By litePackageCurrencyText = By.cssSelector("#currency-lite i");
+    private By classicPackageText = By.id("name-classic");
+    private By classicPackagePriceText = By.cssSelector("#currency-classic b");
+    private By classicPackageCurrencyText = By.cssSelector("#currency-classic i");
+    private By premiumPackageText = By.id("name-premium");
+    private By premiumPackagePriceText = By.cssSelector("#currency-premium b");
+    private By premiumPackageCurrencyText = By.cssSelector("#currency-premium i");
+    private By countryBtn = By.cssSelector(".head-links .country-current");
+    private By kuwaitCountryFlag = By.id("kw-contry-flag");
+    private By bahrainCountryFlag = By.id("bh-contry-flag");
     long sec = 20;
     private WebDriver driver;
     public WebDriverWait wait;
@@ -30,46 +30,16 @@ public class HomePage {
         wait = new WebDriverWait(driver, Duration.ofSeconds(sec));
     }
 
-
     public void clickOnCountryBtn() {
-        int i = 0;
-        do {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(countryBtn));
-                driver.findElement(countryBtn).click();
-                return;
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-            i++;
-        } while (i < 3);
+        clickBtn(countryBtn);
     }
 
     public void selectKuwaitFlag() {
-        int i = 0;
-        do {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(kuwaitCountryFlag));
-                driver.findElement(kuwaitCountryFlag).click();
-                return;
-            } catch (NullPointerException e) {
-                e.printStackTrace();
-            }
-            i++;
-        } while (i < 3);
+        clickBtn(kuwaitCountryFlag);
     }
 
     public void selectBahrainFlag() {
-        int i = 0;
-        do {
-            try {
-                wait.until(ExpectedConditions.elementToBeClickable(bahrainCountryFlag));
-                driver.findElement(bahrainCountryFlag).click();
-                return;
-            } catch (NullPointerException e) {
-            }
-            i++;
-        } while (i < 3);
+        clickBtn(bahrainCountryFlag);
     }
 
 
@@ -106,7 +76,19 @@ public class HomePage {
     public String getPremiumPackagePrice() {
         return getText(premiumPackagePriceText);
     }
-
+private void clickBtn(By element){
+    int i = 0;
+    do {
+        try {
+            wait.until(ExpectedConditions.elementToBeClickable(element));
+            driver.findElement(element).click();
+            return;
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+        }
+        i++;
+    } while (i < 3);
+}
 
     private String getText(By element) {
         int i = 0;
@@ -122,4 +104,3 @@ public class HomePage {
 
     }
 }
-

@@ -1,5 +1,6 @@
-package baseTests;
+package com.testcrew.baseTests;
 
+import com.testcrew.pages.HomePage;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -7,17 +8,13 @@ import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
-import pages.HomePage;
 
-public class BaseTests {
+public class BaseTest {
     protected HomePage homePage;
-
     protected WebDriver driver;
 
     @Parameters({"browser"})
-//    @Given("Saudi arabian customer will navigate to the stc tv main page")
-    public void setup(@Optional String browser) {
-
+    public void setup(@Optional("chrome") String browser) {
         if ("firefox".equalsIgnoreCase(browser)) {
             WebDriverManager.firefoxdriver().setup();
             driver = new FirefoxDriver();
@@ -34,6 +31,6 @@ public class BaseTests {
     }
 
     public void tearDown() {
-        driver.quit();
+            driver.quit();
     }
 }
