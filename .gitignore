@@ -1,5 +1,6 @@
 # Ignore any .idea files
 *.idea
+*.class
 
 # Ignore target folder
 target
